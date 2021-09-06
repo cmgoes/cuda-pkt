@@ -1,0 +1,21 @@
+[package]
+name = "packetcrypt-dll"
+version = "0.4.0"
+authors = ["Caleb James DeLisle <cjd@cjdns.fr>"]
+edition = "2018"
+license = "LGPL-2.1-only OR LGPL-3.0-only"
+description = """
+PacketCrypt proof of work algorithm
+"""
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+packetcrypt-sys = { version = "0.4", path = "../packetcrypt-sys" }
+
+# Rust wants to use DWARF unwinding but mingw32 i686 only supports sjlj
+[target.i686-pc-windows-gnu]
+panic = "abort"
